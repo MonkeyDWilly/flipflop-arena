@@ -323,11 +323,7 @@ export default function KahootHostPage() {
               {(remainingMs / 1000).toFixed(1)}s
             </span>
           </div>
-          <FlipFlopProblem
-            scenario={poll.scenario}
-            showCorrect
-            correctAnswer={poll.scenario.answer}
-          />
+          <FlipFlopProblem scenario={poll.scenario} />
           <div className="mt-6 w-full max-w-md">
             <p className="text-slate-400 text-xs uppercase tracking-wider mb-2">
               Respuestas recibidas
@@ -373,6 +369,18 @@ export default function KahootHostPage() {
           <p className="text-slate-400 text-sm text-center mb-6">
             Ronda {poll.currentQuestionIndex} de {poll.totalQuestions}
           </p>
+          {poll.scenario && (
+            <div className="mb-8 flex flex-col items-center">
+              <p className="text-slate-500 text-xs uppercase tracking-wider mb-3">
+                Pregunta cerrada — respuesta correcta
+              </p>
+              <FlipFlopProblem
+                scenario={poll.scenario}
+                showCorrect
+                correctAnswer={poll.scenario.answer}
+              />
+            </div>
+          )}
           <KahootLeaderboardTable rows={poll.leaderboard} />
           <button
             type="button"
